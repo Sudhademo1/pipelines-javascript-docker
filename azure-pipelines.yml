@@ -17,12 +17,28 @@ steps:
   inputs:
     dockerVersion: '17.09.0-ce'
 - task: Docker@2
-  displayName: Build and Push an image
   inputs:
     containerRegistry: 'ToDocker'
-    repository: 'dockerimage'
-    command: 'buildAndPush'
+    command: 'login'
+- task: Docker@2
+  displayName: Build an image
+  inputs:
+    containerRegistry: 'ToDocker'
+    command: 'build'
     Dockerfile: '**/Dockerfile'
+- task: Docker@2
+  displayName: Pushing an Image
+  inputs:
+    containerRegistry: 'ToDocker'
+    command: 'push'
+
+# - task: Docker@2
+#   displayName: Build and Push an image
+#   inputs:
+#     containerRegistry: 'ToDocker'
+#     repository: 'dockerimage'
+#     command: 'buildAndPush'
+#     Dockerfile: '**/Dockerfile'
 # - task: Docker@2
 #   displayName: Build an image
 #   inputs:
