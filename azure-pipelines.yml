@@ -13,6 +13,7 @@ variables:
 
 steps:
 - task: DockerInstaller@0
+  displayName: Insatll Docker
   inputs:
     dockerVersion: '17.09.0-ce'
 - task: Docker@2
