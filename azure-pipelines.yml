@@ -16,27 +16,29 @@ steps:
   displayName: Insatll Docker
   inputs:
     dockerVersion: '17.09.0-ce'
-- task: Docker@2
-  inputs:
-    containerRegistry: 'ToDocker'
-    command: 'login'
-- task: Docker@2
-  displayName: Build an image
-  inputs:
-    containerRegistry: 'ToDocker'
-    command: 'build'
-    Dockerfile: '**/Dockerfile'
-- task: Docker@2
-  displayName: Pushing an Image
-  inputs:
-    containerRegistry: 'ToDocker'
-    command: 'push'
+# - task: Docker@2
+#   inputs:
+#     containerRegistry: 'ToDocker'
+#     command: 'login'
+
 
 # - task: Docker@2
 #   displayName: Build and Push an image
 #   inputs:
 #     containerRegistry: 'ToDocker'
 #     repository: 'dockerimage'
+- task: Docker@2
+  inputs:
+    containerRegistry: 'ToDocker'
+    repository: 'https://index.docker.io/v1/'
+    command: 'build'
+    Dockerfile: '**/Dockerfile'
+    arguments: '$(Build.ArtifactStagingDirectory)'
+- task: Docker@2
+  inputs:
+    containerRegistry: 'ToDocker'
+    repository: 'https://index.docker.io/v1/'
+    command: 'push'
 #     command: 'buildAndPush'
 #     Dockerfile: '**/Dockerfile'
 # - task: Docker@2
