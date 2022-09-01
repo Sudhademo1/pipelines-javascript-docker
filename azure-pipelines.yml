@@ -12,6 +12,9 @@ variables:
   imageName: 'pipelines-javascript-docker'
 
 steps:
+- task: DockerInstaller@0
+  inputs:
+    dockerVersion: '17.09.0-ce'
 - task: Docker@2
   displayName: Build and Push an image
   inputs:
